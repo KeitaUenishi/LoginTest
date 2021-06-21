@@ -1,0 +1,25 @@
+﻿@page "/"
+@* 本当はこのusingディレクティブが無くても動いてくれるけど、using追加しろと言われ続けてしまうのでしょうがなく追加 *@
+@using LoginTest.Models
+
+<div align="center">
+    <EditForm Model="@LoginData" OnValidSubmit="@OnValidSubmit" OnInvalidSubmit="@OnInvalidSubmit">
+        <DataAnnotationsValidator />
+        @* ValidationSummaryを配置した箇所に全てのValidationメッセージが表示される *@
+        @*<ValidationSummary />*@
+
+        <div class="form-group">
+            <label>ユーザーID</label>
+            <InputText id="txtUserID" @bind-Value="LoginData.UserID" />
+            <ValidationMessage For="@(() => LoginData.UserID)" />
+        </div>
+
+        <div>
+            <label>パスワード</label>
+            <InputText id="txtPassword" type="password" @bind-Value="LoginData.Password" />
+            <ValidationMessage For="@(() => LoginData.Password)" />
+        </div>
+
+        <button type="submit" class="btn btn-primary">ログイン</button>
+    </EditForm>
+</div>

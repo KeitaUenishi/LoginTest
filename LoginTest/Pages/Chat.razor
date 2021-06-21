@@ -1,0 +1,21 @@
+﻿@page "/Chat"
+
+<h1>チャット</h1>
+
+<div align="center">
+    <div class="form-group">
+        @*<input @bind="_messageInput" size="50" />*@
+        <input @bind="_messageInput" @bind:event="oninput" size="50" @onkeydown="KeyDownAsync" />
+        <button class="btn btn-primary" @onclick="SendAsync">送信</button>
+    </div>
+
+    <hr>
+
+    <div align="left">
+        @foreach (var message in _messages)
+        {
+            @*HTMLのタグをそのまま出力する為にMarkUpString型にキャストする*@
+            @((MarkupString)message)<br>
+        }
+    </div>
+</div>
